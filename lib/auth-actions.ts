@@ -1,4 +1,4 @@
-"use server"; // marks this as a server action
+"use server";
 
 import { signIn, signOut } from "@/auth";
 
