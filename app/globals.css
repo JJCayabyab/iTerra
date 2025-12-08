@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 @theme {
   --color-primary: #2c3892;
   --color-primary-light: #3a47b5;
@@ -9,4 +8,15 @@
   --color-accent: #f68712;
   --color-accent-light: #ff9a3c;
   --color-accent-dark: #c6660e;
+}
+
+body{
+  background-color: whitesmoke;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: var(--color-primary);
 }
