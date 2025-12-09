@@ -81,7 +81,7 @@ export default function NewTripForm() {
                 <Button
                     disabled={pending}
                     btnName={pending ? "Creating Trip..." : "Create Trip"}
-                    className="w-full text-lg hover:bg-orange-500"
+                    className="w-full text-lg"
                     type="submit"
                 />
             </form>

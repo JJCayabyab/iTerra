@@ -11,12 +11,12 @@ export async function AddTrip(formData: FormData) {
   if (!session || !session.user?.id) {
     throw new Error("Not authenticated");
   }
-
+  
+  const imageUrl = formData.get("imageUrl")?.toString();
   const startDateStr = formData.get("startDate")?.toString();
   const endDateStr = formData.get("endDate")?.toString();
   const title = formData.get("title")?.toString();
   const description = formData.get("description")?.toString();
-  const imageUrl = formData.get("imageUrl")?.toString();
 
   //validate if all fields are filled
   if (!title || !description || !startDateStr || !endDateStr) {
