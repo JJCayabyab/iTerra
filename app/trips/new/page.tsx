@@ -24,7 +24,7 @@ export default async function NewTrip() {
                     <h1 className="text-2xl font-medium">Add New Trip</h1>
                     <NewTripForm />
                 </div>
-                
+
             </Container>
         </>
     )
