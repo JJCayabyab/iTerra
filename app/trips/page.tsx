@@ -1,9 +1,10 @@
 import { auth } from "@/auth"
 import SignInRequired from "../component/auth/SignInRequired"
-import Button from "../component/ui/button"
+import Button from "../component/ui/Button"
 import Container from "../component/Container"
 import Link from "next/link"
 import { prisma } from "@/lib/prisma"
+import { FaRegCalendarAlt } from "react-icons/fa"
 
 export default async function TripsPage() {
    const session = await auth()
@@ -27,6 +28,8 @@ export default async function TripsPage() {
 
    const upcomingTrips = trips.filter((trip) => {
       return trip.startDate > new Date()
+   }).sort((a, b) => {
+      return a.startDate.getTime() - b.startDate.getTime()
    })
 
    const upcomingCount = upcomingTrips.length
@@ -74,7 +77,7 @@ export default async function TripsPage() {
 
                {/* Upcoming Trips  */}
                <div className="p-6 bg-white rounded-xl shadow-sm border border-slate-100 border-l-4 border-l-emerald-500">
-                  <p className="text-sm font-medium text-slate-500 uppercase tracking-wide">Upcoming</p>
+                  <p className="text-sm font-medium text-slate-500 uppercase tracking-wide">Upcoming Trips</p>
                   <p className="text-3xl font-extrabold text-slate-800 mt-2">{upcomingCount}</p>
                </div>
 
@@ -126,7 +129,7 @@ export default async function TripsPage() {
                               </h3>
 
                               <div className="mt-2 flex items-center gap-2 text-sm text-slate-500">
-                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                 <FaRegCalendarAlt />
                                  <span>
                                     {trip.startDate.toDateString()}
                                  </span>
@@ -175,7 +178,7 @@ export default async function TripsPage() {
                               />
 
                               <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-slate-700 shadow-sm">
-                                Completed
+                                 Completed
                               </div>
                            </div>
 
@@ -185,8 +188,7 @@ export default async function TripsPage() {
                               </h3>
 
                               <div className="mt-2 flex items-center gap-2 text-sm text-slate-500">
-                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                 <span>
+                                 <FaRegCalendarAlt />                                 <span>
                                     {trip.startDate.toDateString()}
                                  </span>
                               </div>
@@ -202,9 +204,9 @@ export default async function TripsPage() {
                   })
                ) : (
                   <div className="col-span-full py-12 text-center border-2 border-dashed border-slate-200 rounded-xl bg-slate-50/50">
-                     <p className="text-indigo-600 font-medium ">
-                        You have no completed trips yet
-                     </p>
+                     <Link href="/trips/new" className="text-indigo-600 font-medium hover:underline">
+                        Start planning your first adventure
+                     </Link>
                   </div>
                )}
             </div>

@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/app/component/ui/button"
+import Button from "@/app/component/ui/Button"
 import { AddTrip } from "@/lib/actions/add-trip"
 import { UploadButton } from "@/lib/uploadthing";
 import { useState } from "react";
