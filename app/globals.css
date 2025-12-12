@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 @import "uploadthing/tw/v4";
-
+@import "@radix-ui/themes/styles.css";
 @source "../node_modules/@uploadthing/react/dist"; 
 
 @theme {
   --color-primary: #2c3892;
+  --color-primary-hover: #1e276b;
   --color-primary-light: #3a47b5;
   --color-primary-dark: #1f2a6a;
 

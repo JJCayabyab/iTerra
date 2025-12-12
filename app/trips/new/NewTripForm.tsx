@@ -4,6 +4,7 @@ import { AddTrip } from "@/lib/actions/add-trip"
 import { UploadButton } from "@/lib/uploadthing";
 import { useState } from "react";
 import Image from "next/image";
+import BackButton from "@/app/component/ui/BackButton";
 
 export default function NewTripForm() {
     const [imageUrl, setImageUrl] = useState<string | null>(null);

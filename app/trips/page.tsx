@@ -136,7 +136,7 @@ export default async function TripsPage() {
                               </div>
 
                               <Link href={`/trips/${trip.id}`} className="block mt-5">
-                                 <button className="w-full py-2 rounded-lg text-sm font-medium bg-primary text-white">
+                                 <button className="w-full py-2 rounded-lg text-sm font-medium bg-primary hover:bg-primary-hover text-white">
                                     View Details
                                  </button>
                               </Link>
@@ -194,7 +194,7 @@ export default async function TripsPage() {
                               </div>
 
                               <Link href={`/trips/${trip.id}`} className="block mt-5">
-                                 <button className="w-full py-2 rounded-lg text-sm font-medium bg-primary text-white">
+                                 <button className="w-full py-2 rounded-lg text-sm font-medium bg-primary  hover:bg-primary-hover text-white">
                                     View Details
                                  </button>
                               </Link>

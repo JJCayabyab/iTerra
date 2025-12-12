@@ -1,5 +1,5 @@
 "use client";
-import { Trip } from "../generated/prisma/client";
+import { Location, Trip } from "../generated/prisma/client";
 import Image from "next/image";
 import Button from "./ui/Button";
 import { FaInfoCircle, FaMapMarkerAlt, FaRegCalendarAlt, FaWallet } from "react-icons/fa";
@@ -11,13 +11,21 @@ import {
     TabsTrigger,
     TabsContent
 } from "@/app/component/ui/Tabs";
+
+type TripWithLocation = Trip & {
+    trip: Trip;
+    locations: Location[];
+};
+
 type TripDetailsClientProps = {
-    trip: Trip
+    trip: TripWithLocation
 }
 
-export default function TripDetailsClient({ trip }: TripDetailsClientProps) {
+export default function TripDetailsClient({ trip }: TripDetailsClientProps ) {
 
     const durationDays = Math.ceil((trip.endDate.getTime() - trip.startDate.getTime()) / (1000 * 60 * 60 * 24));
+    const locationCount = trip.locations.length;
+    console.log(trip);
     return (
         <>
             <div className="relative w-full h-72 md:h-80 mb-5 shadow-lg">
@@ -39,12 +47,7 @@ export default function TripDetailsClient({ trip }: TripDetailsClientProps) {
 
                 </div>
 
-                <div className="mt-2 flex items-center gap-2 text-sm font-light text-slate-500">
-                    <FaRegCalendarAlt />
-                    <span>
-                        {trip?.startDate.toDateString()} - {trip?.endDate.toDateString()}
-                    </span>
-                </div>
+
 
             </div>
 
@@ -66,37 +69,33 @@ export default function TripDetailsClient({ trip }: TripDetailsClientProps) {
                     <TabsContent value="overview">
                         <div className="mt-6 space-y-8">
 
-                            {/* Section 1: Description */}
                             <div>
                                 <h3 className="text-lg font-semibold text-slate-800 mb-2 flex items-center gap-2">
                                     <FaInfoCircle className="text-blue-500" />
                                     About this Trip
                                 </h3>
-                                <div className="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                                <div className=" p-4 rounded-lg">
                                     <p className="text-slate-600 leading-relaxed">
                                         {trip?.description || "No description provided for this trip."}
                                     </p>
                                 </div>
-                            </div>
-
-                            {/* Section 2: Key Details Grid */}
-                            <div>
-                                <h3 className="text-lg font-semibold text-slate-800 mb-4">Trip Details</h3>
-                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-
-                                    {/* Duration Card */}
-                                    <div className="p-4 rounded-lg border border-slate-200 bg-white flex flex-col items-center justify-center text-center shadow-sm">
-                                        <div className="p-2 bg-blue-50 text-blue-600 rounded-full mb-2">
-                                            <FaClock size={20} />
-                                        </div>
-                                        <span className="text-slate-500 text-xs uppercase font-bold tracking-wider">Duration</span>
-                                        <span className="text-slate-800 font-semibold mt-1">{durationDays} Days</span>
+                                <div className="mt-2 flex items-center gap-2 text-sm font-normal text-slate-500">
+                                    <div className="flex  gap-2 items-center">
+                                        <FaRegCalendarAlt />
+                                        <p>Date</p>
                                     </div>
 
-
-
+                                </div>
+                                <div className="mt-2 flex items-center gap-2 text-sm font-normal text-slate-500">
+                                    <FaRegCalendarAlt />
+                                    <span>
+                                        {trip?.startDate.toDateString()} - {trip?.endDate.toDateString()}
+                                    </span>
+                                    {locationCount}
                                 </div>
                             </div>
+
+
                         </div>
                     </TabsContent>
 

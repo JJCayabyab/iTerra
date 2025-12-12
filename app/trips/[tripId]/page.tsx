@@ -19,9 +19,13 @@ export default async function TripDetails({ params }: { params: { tripId: string
     const { tripId } = params;
 
     const trip = await prisma.trip.findUnique({
-        where: { id: tripId }
+        where: { id: tripId },
+        include:{
+            locations: true
+        }
     });
 
+    console.log(trip?.locations?.length);
     //Trip not found
     if (!trip) {
         return (
@@ -34,7 +38,7 @@ export default async function TripDetails({ params }: { params: { tripId: string
                     </h2>
                     <p className="text-slate-500 max-w-md mb-8">
                         We couldn't locate the trip details you requested. It may have been deleted or the link is incorrect.
-                    </p>
+                    </p> 
 
 
                     <Link
