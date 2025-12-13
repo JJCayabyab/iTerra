@@ -17,7 +17,7 @@ export default async function NewTrip() {
         <>
             <Container>
                 {/* HEADER */}
-                <BackButton />
+                <BackButton href="/trips" />
                 <div
                     data-slot="card"
                     className=

@@ -54,7 +54,7 @@ export default async function TripDetails({ params }: { params: { tripId: string
 
     return (
         <Container>
-            <BackButton />
+            <BackButton href="/trips" />
             <TripDetailsClient trip={trip} />
         </Container>
 

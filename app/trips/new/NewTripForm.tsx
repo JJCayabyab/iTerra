@@ -9,6 +9,8 @@ import BackButton from "@/app/component/ui/BackButton";
 export default function NewTripForm() {
     const [imageUrl, setImageUrl] = useState<string | null>(null);
     const [pending, setPending] = useState(false);
+    const [startDate, setStartDate] = useState<string>("");
+    const today = new Date().toISOString().split("T")[0];
 
 
     return (
@@ -44,6 +46,10 @@ export default function NewTripForm() {
                             className="w-full border border-gray-300 px-3 py-2 outline-none rounded-md focus:border-primary"
                             required
                             disabled={pending}
+                            onChange={(e)=>{
+                                setStartDate(e.target.value);
+                            }}
+                            min={today}
                         />
                     </div>
                     <div className="md:w-1/2">
@@ -54,6 +60,7 @@ export default function NewTripForm() {
                             className="w-full border border-gray-300 px-3 py-2 outline-none rounded-md focus:border-primary"
                             required
                             disabled={pending}
+                             min={startDate} 
                         />
                     </div>
                 </div>

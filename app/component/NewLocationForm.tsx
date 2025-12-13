@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { CiSearch } from "react-icons/ci";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { AddLocation } from "@/lib/actions/add-location";
-import BackButton from "./ui/BackButton";
+
 
 export default function NewLocationForm({ tripId }: { tripId: string }) {
     const [query, setQuery] = useState<string>("");
@@ -55,7 +55,7 @@ export default function NewLocationForm({ tripId }: { tripId: string }) {
 
     return (
         <>
-            <BackButton />
+   
             <form action={AddLocation} className="max-w-md mx-auto bg-white rounded-xl shadow-md border border-gray-100 p-6 space-y-6">
                 <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
                     <span className="text-blue-500"></span> Add Destination
