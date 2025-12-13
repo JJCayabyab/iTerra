@@ -11,6 +11,7 @@ import {
     TabsTrigger,
     TabsContent
 } from "@/app/component/ui/Tabs";
+import Map from "./ui/Map";
 
 export type TripWithLocation = Trip & {
     locations: Location[];
@@ -116,7 +117,7 @@ export default function TripDetailsClient({ trip }: TripDetailsClientProps) {
                                         </div>
                                         <p>{trip?.startDate.toLocaleDateString()}</p>
                                     </span>
-                                    <span  className="hidden md:block w-4 h-[1px] bg-slate-300"></span>
+                                    <span className="hidden md:block w-4 h-[1px] bg-slate-300"></span>
                                     <span className="px-3 py-1 bg-slate-100 text-slate-600 text-sm font-medium rounded-md flex items-center gap-2">
                                         <div className="flex items-center  gap-2">
                                             <FaRegCalendarAlt />
@@ -137,7 +138,9 @@ export default function TripDetailsClient({ trip }: TripDetailsClientProps) {
 
                     {/* Content for 'Map' */}
                     <TabsContent value="map">
-
+                        <div className="mt-6 space-y-6">
+                            <Map  locations={trip.locations}/>
+                        </div>
                     </TabsContent>
 
                 </Tabs>
