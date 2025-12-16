@@ -2,7 +2,7 @@
 import { Location, Trip } from "../generated/prisma/client";
 import Image from "next/image";
 import Button from "./ui/Button";
-import { FaInfoCircle, FaMapMarkerAlt, FaRegCalendarAlt, FaWallet } from "react-icons/fa";
+import { FaInfoCircle, FaMapMarkerAlt, FaRegCalendarAlt } from "react-icons/fa";
 import Link from "next/link";
 import { FaClock } from "react-icons/fa";
 import {
@@ -12,20 +12,37 @@ import {
     TabsContent
 } from "@/app/component/ui/Tabs";
 import Map from "./ui/Map";
+import DeleteTrip from "@/lib/actions/delete-trip";
+import { useRouter } from "next/navigation";
 
 export type TripWithLocation = Trip & {
     locations: Location[];
 };
 
 type TripDetailsClientProps = {
-    trip: TripWithLocation
-}
+    trip: TripWithLocation;
+};
 
 export default function TripDetailsClient({ trip }: TripDetailsClientProps) {
+    const router = useRouter();
 
-    const durationDays = Math.ceil((trip.endDate.getTime() - trip.startDate.getTime()) / (1000 * 60 * 60 * 24));
+    const now = new Date();
+    const isUpcoming = new Date(trip.startDate) > now;
+
+    const durationDays = Math.ceil(
+        (trip.endDate.getTime() - trip.startDate.getTime()) /
+        (1000 * 60 * 60 * 24)
+    );
     const locationCount = trip.locations.length;
-    console.log(trip);
+
+    // delete handler 
+    const handleDelete = async () => {
+        const confirmed = confirm("Are you sure you want to delete this trip?");
+        if (!confirmed) return;
+
+        await DeleteTrip(trip.id);
+    };
+
     return (
         <>
             <div className="relative w-full h-72 md:h-80 mb-5 shadow-lg">
@@ -36,26 +53,27 @@ export default function TripDetailsClient({ trip }: TripDetailsClientProps) {
                     className="object-cover rounded-lg"
                 />
             </div>
+
             <div className="bg-white shadow-md p-5 rounded-lg">
-                <div className="flex justify-between">
+                <div className="flex justify-between items-center gap-3">
                     <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-slate-800">
                         {trip?.title}
                     </h1>
-                    <Link href={`/trips/${trip.id}/itenerary/new`}>
-                        <Button btnName="Add Location" className="text-sm" />
-                    </Link>
 
+                    <div className="flex gap-3">
+                        <Link href={`/trips/${trip.id}/itenerary/new`}>
+                            <Button btnName="Add Location" className="text-sm" />
+                        </Link>
+                        {isUpcoming && (
+                            <Button btnName="Delete Trip" className="text-sm bg-red-600  hover:bg-red-700 " onClick={handleDelete} />
+                        )}
+                    </div>
                 </div>
-
-
-
             </div>
 
             {/* TABS */}
             <div className="w-full border-none bg-white shadow-md p-5 rounded-lg mt-6 mb-6">
-
                 <Tabs defaultValue="overview" className="w-full">
-
                     {/* The Tabs List */}
                     <div className="flex justify-start">
                         <TabsList>
@@ -75,13 +93,15 @@ export default function TripDetailsClient({ trip }: TripDetailsClientProps) {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {/* Total Duration */}
-                                <div className=" bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center gap-4">
+                                <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center gap-4">
                                     <div className="p-3 bg-blue-100 text-blue-600 rounded-full">
                                         <FaClock size={20} />
                                     </div>
                                     <div>
                                         <p className="text-sm text-slate-500 font-medium">Duration</p>
-                                        <p className="text-lg font-bold text-slate-800">{durationDays} Days</p>
+                                        <p className="text-lg font-bold text-slate-800">
+                                            {durationDays} Days
+                                        </p>
                                     </div>
                                 </div>
 
@@ -91,61 +111,42 @@ export default function TripDetailsClient({ trip }: TripDetailsClientProps) {
                                         <FaMapMarkerAlt size={20} />
                                     </div>
                                     <div>
-                                        <p className="text-sm text-slate-500 font-medium">Destinations</p>
-                                        <p className="text-lg font-bold text-slate-800">{locationCount} Stops</p>
-                                    </div>
-                                </div>
-
-
-                            </div>
-
-                            <div className="lg:col-span-2 space-y-6">
-                                <div>
-                                    <div className="bg-slate-50 p-5 rounded-xl border border-slate-100">
-                                        <p className="text-slate-600 leading-relaxed text-sm md:text-base">
-                                            {trip?.description || "No description provided yet. Click edit to add details about your adventure!"}
+                                        <p className="text-sm text-slate-500 font-medium">
+                                            Destinations
+                                        </p>
+                                        <p className="text-lg font-bold text-slate-800">
+                                            {locationCount} Stops
                                         </p>
                                     </div>
                                 </div>
-
-                                {/* Date  */}
-                                <div className="flex items-center gap-3 flex-col md:flex-row">
-                                    <span className="px-3 py-1 bg-slate-100 text-slate-600 text-sm font-medium rounded-md flex items-center gap-2">
-                                        <div className="flex items-center  gap-2">
-                                            <FaRegCalendarAlt />
-                                            Start:
-                                        </div>
-                                        <p>{trip?.startDate.toLocaleDateString()}</p>
-                                    </span>
-                                    <span className="hidden md:block w-4 h-[1px] bg-slate-300"></span>
-                                    <span className="px-3 py-1 bg-slate-100 text-slate-600 text-sm font-medium rounded-md flex items-center gap-2">
-                                        <div className="flex items-center  gap-2">
-                                            <FaRegCalendarAlt />
-                                            End:
-                                        </div>
-                                        <p>{trip?.endDate.toLocaleDateString()}</p>
-                                    </span>
-                                </div>
                             </div>
 
+                            {/* Date */}
+                            <div className="flex items-center gap-3 flex-col md:flex-row">
+                                <span className="px-3 py-1 bg-slate-100 text-slate-600 text-sm font-medium rounded-md flex items-center gap-2">
+                                    <FaRegCalendarAlt />
+                                    {trip.startDate.toLocaleDateString()}
+                                </span>
+
+                                <span className="px-3 py-1 bg-slate-100 text-slate-600 text-sm font-medium rounded-md flex items-center gap-2">
+                                    <FaRegCalendarAlt />
+                                    {trip.endDate.toLocaleDateString()}
+                                </span>
+                            </div>
                         </div>
                     </TabsContent>
 
                     {/* Content for 'Itinerary' */}
-                    <TabsContent value="itinerary">
-
-                    </TabsContent>
+                    <TabsContent value="itinerary"></TabsContent>
 
                     {/* Content for 'Map' */}
                     <TabsContent value="map">
                         <div className="mt-6 space-y-6">
-                            <Map  locations={trip.locations}/>
+                            <Map locations={trip.locations} />
                         </div>
                     </TabsContent>
-
                 </Tabs>
             </div>
-
         </>
-    )
+    );
 }

@@ -11,7 +11,7 @@ export default function TripCard({ trip, variant = "upcoming" }: TripCardProps) 
     const isCompleted = variant === "completed"
 
     return (
-        <div className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+        <div className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
 
             {/* Image Section */}
             <div className="relative h-40 overflow-hidden">
@@ -19,8 +19,8 @@ export default function TripCard({ trip, variant = "upcoming" }: TripCardProps) 
                     src={trip.imageUrl || "/images/default-trip.jpg"}
                     alt={trip.title}
                     className={`w-full h-full object-cover transition-transform duration-500 ${isCompleted
-                            ? "grayscale hover:grayscale-0" 
-                            : "hover:scale-105"          
+                        ? "grayscale hover:grayscale-0"
+                        : "hover:scale-105"
                         }`}
                 />
 
