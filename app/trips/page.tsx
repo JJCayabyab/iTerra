@@ -4,8 +4,8 @@ import Button from "../component/ui/Button"
 import Container from "../component/Container"
 import Link from "next/link"
 import { prisma } from "@/lib/prisma"
-import { FaRegCalendarAlt, FaMapMarkerAlt } from "react-icons/fa" // Added Map icon for variety
-
+import { FaRegCalendarAlt, FaMapMarkerAlt } from "react-icons/fa"
+import TripCard from "../component/ui/TripGridCard"
 export default async function TripsPage() {
    const session = await auth()
 
@@ -95,7 +95,7 @@ export default async function TripsPage() {
                </div>
             </div>
 
-            {/*  Ongoing Trips */}
+            {/* Ongoing Trips */}
             {ongoingTrips.length > 0 && (
                <div className="mt-12">
                   <div className="flex items-center gap-3 mb-6">
@@ -108,10 +108,16 @@ export default async function TripsPage() {
 
                   <div className="grid grid-cols-1 gap-6">
                      {ongoingTrips.map((trip) => {
-                        // Calculate Progress for the bar
+
                         const totalDuration = trip.endDate.getTime() - trip.startDate.getTime();
+
+                        // Calculate how much time has elapsed since the trip started in milliseconds
                         const elapsed = now.getTime() - trip.startDate.getTime();
+
+                        // Calculate the progress percentae for the progress bar
+                        // Ensure it stays between 0% and 100%
                         const percentage = Math.min(100, Math.max(0, (elapsed / totalDuration) * 100));
+
                         const currentDay = Math.ceil(elapsed / (1000 * 60 * 60 * 24));
                         const totalDays = Math.ceil(totalDuration / (1000 * 60 * 60 * 24));
 
@@ -120,7 +126,7 @@ export default async function TripsPage() {
                               key={trip.id}
                               className="bg-white rounded-2xl overflow-hidden shadow-md border border-emerald-100 flex flex-col md:flex-row"
                            >
-                              {/*  Image for Ongoing */}
+                              {/* Image for Ongoing */}
                               <div className="relative w-full md:w-1/3 h-48 md:h-auto">
                                  <img
                                     src={trip.imageUrl || "/images/default-trip.jpg"}
@@ -133,16 +139,16 @@ export default async function TripsPage() {
                               </div>
 
                               <div className="p-6 md:p-8 flex-1 flex flex-col justify-center">
-                                 <div className="flex justify-between items-start">
+                                 <div className="flex flex-col md:flex-row justify-between items-start">
                                     <h3 className="text-2xl md:text-3xl font-bold text-slate-800 mb-2">
                                        {trip.title}
                                     </h3>
-                                    <span className="hidden md:block text-emerald-600 font-bold bg-emerald-50 px-3 py-1 rounded-lg text-sm">
+                                    <span className=" text-emerald-600 font-semibold bg-emerald-50 px-1 md:px-2 py-1  rouded:sm md:rounded-md text-sm">
                                        Day {currentDay} of {totalDays}
                                     </span>
                                  </div>
 
-                                 <div className="flex items-center gap-2 text-slate-500 mb-6">
+                                 <div className="flex items-center gap-2 text-slate-500 mb-6 mt-2">
                                     <FaRegCalendarAlt className="text-emerald-500" />
                                     <span className="font-medium">
                                        {trip.startDate.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
@@ -157,11 +163,10 @@ export default async function TripsPage() {
                                        className="bg-emerald-500 h-2.5 rounded-full transition-all duration-1000"
                                        style={{ width: `${percentage}%` }}
                                     ></div>
-                                    <p className="text-xs text-slate-400 mt-2 text-right md:hidden">Day {currentDay} of {totalDays}</p>
                                  </div>
 
                                  <Link href={`/trips/${trip.id}`}>
-                                    <button className="px-6 py-3 rounded-xl text-base font-semibold bg-primary  hover:bg-primary-hover text-white transition-colors w-full md:w-auto">
+                                    <button className="w-full py-2 rounded-lg text-sm font-medium bg-primary  hover:bg-primary-hover text-white">
                                        View Details
                                     </button>
                                  </Link>
@@ -183,46 +188,10 @@ export default async function TripsPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
                {upcomingCount > 0 ? (
-                  upcomingTrips.map((trip) => {
-                     return (
-                        <div
-                           key={trip.id}
-                           className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-                        >
+                  upcomingTrips.map((trip) => (
 
-                           <div className="relative h-40 overflow-hidden">
-                              <img
-                                 src={trip.imageUrl || "/images/default-trip.jpg"}
-                                 alt={trip.title}
-                                 className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                              />
-
-                              <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-slate-700 shadow-sm">
-                                 {trip.startDate.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
-                              </div>
-                           </div>
-
-                           <div className="p-5">
-                              <h3 className="text-lg font-bold text-slate-800 leading-tight">
-                                 {trip.title}
-                              </h3>
-
-                              <div className="mt-2 flex items-center gap-2 text-sm text-slate-500">
-                                 <FaRegCalendarAlt />
-                                 <span>
-                                    {trip.startDate.toDateString()}
-                                 </span>
-                              </div>
-
-                              <Link href={`/trips/${trip.id}`} className="block mt-5">
-                                 <button className="w-full py-2 rounded-lg text-sm font-medium bg-primary hover:bg-primary-hover text-white">
-                                    View Details
-                                 </button>
-                              </Link>
-                           </div>
-                        </div>
-                     )
-                  })
+                     <TripCard key={trip.id} trip={trip} variant="upcoming" />
+                  ))
                ) : (
                   <div className="col-span-full py-12 text-center border-2 border-dashed border-slate-200 rounded-xl bg-slate-50/50">
                      <p className="text-slate-500 mb-2">No upcoming trips planned yet.</p>
@@ -243,45 +212,9 @@ export default async function TripsPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
                {completedTrips.length > 0 ? (
-                  completedTrips.map((trip) => {
-                     return (
-                        <div
-                           key={trip.id}
-                           className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-                        >
-
-                           <div className="relative h-40 overflow-hidden ">
-                              <img
-                                 src={trip.imageUrl || "/images/default-trip.jpg"}
-                                 alt={trip.title}
-                                 className="w-full h-full object-cover transition-all duration-500 grayscale hover:grayscale-0"
-                              />
-
-                              <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-slate-700 shadow-sm">
-                                 Completed
-                              </div>
-                           </div>
-
-                           <div className="p-5">
-                              <h3 className="text-lg font-bold text-slate-800 leading-tight">
-                                 {trip.title}
-                              </h3>
-
-                              <div className="mt-2 flex items-center gap-2 text-sm text-slate-500">
-                                 <FaRegCalendarAlt />                         <span>
-                                    {trip.startDate.toDateString()}
-                                 </span>
-                              </div>
-
-                              <Link href={`/trips/${trip.id}`} className="block mt-5">
-                                 <button className="w-full py-2 rounded-lg text-sm font-medium bg-primary  hover:bg-primary-hover text-white">
-                                    View Details
-                                 </button>
-                              </Link>
-                           </div>
-                        </div>
-                     )
-                  })
+                  completedTrips.map((trip) => (
+                     <TripCard key={trip.id} trip={trip} variant="completed" />
+                  ))
                ) : (
                   <div className="col-span-full py-12 text-center border-2 border-dashed border-slate-200 rounded-xl bg-slate-50/50">
                      <Link href="/trips/new" className="text-indigo-600 font-medium hover:underline">
