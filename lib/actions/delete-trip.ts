@@ -25,6 +25,5 @@ export default async function DeleteTrip(tripId: string) {
     where: { id: tripId },
   });
 
-  // Redirect to trips page after deletion
-  redirect("/trips");
+  return { success: true };
 }
