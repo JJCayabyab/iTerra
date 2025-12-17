@@ -10,6 +10,7 @@ import Map from "./ui/Map";
 import DeleteTrip from "@/lib/actions/delete-trip";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import SortableItinerary from "./ui/SortableItenerary";
 
 export type TripWithLocation = Trip & {
     locations: Location[];
@@ -166,7 +167,9 @@ export default function TripDetailsClient({ trip }: TripDetailsClientProps) {
                         </div>
                     </TabsContent>
 
-                    <TabsContent value="itinerary"></TabsContent>
+                    <TabsContent value="itinerary">
+                        <SortableItinerary locations={trip.locations} />
+                    </TabsContent>
 
                     <TabsContent value="map">
                         <div className="mt-6 space-y-6">
