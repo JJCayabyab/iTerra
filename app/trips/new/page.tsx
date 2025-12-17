@@ -6,6 +6,7 @@ import BackButton from "@/app/component/ui/BackButton";
 export default async function NewTrip() {
 
     const session = await auth()
+    
     if (!session) {
         return (
             <>
@@ -16,7 +17,6 @@ export default async function NewTrip() {
     return (
         <>
             <Container>
-                {/* HEADER */}
                 <BackButton href="/trips" />
                 <div
                     data-slot="card"

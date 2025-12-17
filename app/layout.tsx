@@ -34,11 +34,11 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-       // Place this at the top level of your component (or _app.tsx)
+
         <Toaster
           position="top-center"
           toastOptions={{
-            duration: 5000, 
+            duration: 5000,
           }}
         />
 

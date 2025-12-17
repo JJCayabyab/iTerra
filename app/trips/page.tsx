@@ -44,7 +44,7 @@ export default async function TripsPage() {
    const ongoingCount = ongoingTrips.length
 
    // Get the very next trip for the countdown
-   const nextTrip = upcomingTrips[0] // Since we already sorted upcomingTrips, index 0 is the nearest
+   const nextTrip = upcomingTrips[0] 
 
    const daysLeft = nextTrip
       ? Math.ceil(

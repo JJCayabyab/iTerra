@@ -22,10 +22,11 @@ type TripDetailsClientProps = {
 export default function TripDetailsClient({ trip }: TripDetailsClientProps) {
     const router = useRouter();
     const now = new Date();
-    const isUpcoming = new Date(trip.startDate) > now;
+    const isUpcoming = trip.startDate > now;
     const durationDays = Math.ceil((trip.endDate.getTime() - trip.startDate.getTime()) / (1000 * 60 * 60 * 24));
     const locationCount = trip.locations.length;
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const isOngoing = trip.startDate <= now && trip.endDate >= now;
 
     // Function to handle trip deletion
     const handleDelete = async () => {
@@ -43,7 +44,7 @@ export default function TripDetailsClient({ trip }: TripDetailsClientProps) {
         } catch (error) {
             console.error(error);
 
-          
+
             toast.error("Failed to delete trip.", {
                 duration: 4000,
                 position: "top-center"
@@ -53,7 +54,7 @@ export default function TripDetailsClient({ trip }: TripDetailsClientProps) {
 
     return (
         <>
-  
+
 
             {/* Custom Modal */}
             {isModalOpen && (
@@ -96,9 +97,13 @@ export default function TripDetailsClient({ trip }: TripDetailsClientProps) {
                 <div className="flex flex-col md:flex-row justify-between items-center gap-3">
                     <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-slate-800">{trip?.title}</h1>
                     <div className="flex gap-3">
-                        <Link href={`/trips/${trip.id}/itenerary/new`}>
-                            <Button btnName="Add Location" className="text-sm" />
-                        </Link>
+                        {(isUpcoming || isOngoing) && (
+                            <Link href={`/trips/${trip.id}/itenerary/new`}>
+
+                                <Button btnName="Add Location" className="text-sm" />
+                            </Link>
+                        )}
+
                         {isUpcoming && (
                             <Button
                                 btnName="Delete Trip"
