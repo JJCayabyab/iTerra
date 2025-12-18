@@ -49,7 +49,7 @@ export default function NewTripForm() {
                             onChange={(e)=>{
                                 setStartDate(e.target.value);
                             }}
-                            min={today}
+                            // min={today}
                         />
                     </div>
                     <div className="md:w-1/2">
@@ -60,7 +60,7 @@ export default function NewTripForm() {
                             className="w-full border border-gray-300 px-3 py-2 outline-none rounded-md focus:border-primary"
                             required
                             disabled={pending}
-                             min={startDate} 
+                            //  min={startDate} 
                         />
                     </div>
                 </div>

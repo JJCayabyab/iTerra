@@ -20,7 +20,6 @@ export default async function TripsPage() {
       }
    })
 
-   //check current date
    const now = new Date()
 
    // for ongoing trips
@@ -195,7 +194,7 @@ export default async function TripsPage() {
                ) : (
                   <div className="col-span-full py-12 text-center border-2 border-dashed border-slate-200 rounded-xl bg-slate-50/50">
                      <p className="text-slate-500 mb-2">No upcoming trips planned yet.</p>
-                     <Link href="/trips/new" className="text-indigo-600 font-medium hover:underline">
+                     <Link href="/trips/new" className="text-primary font-medium hover:underline">
                         Start planning your next adventure
                      </Link>
                   </div>
@@ -217,7 +216,7 @@ export default async function TripsPage() {
                   ))
                ) : (
                   <div className="col-span-full py-12 text-center border-2 border-dashed border-slate-200 rounded-xl bg-slate-50/50">
-                     <Link href="/trips/new" className="text-indigo-600 font-medium hover:underline">
+                     <Link href="/trips/new" className="text-primary font-medium hover:underline">
                         Start planning your first adventure
                      </Link>
                   </div>
