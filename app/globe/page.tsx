@@ -24,7 +24,6 @@ export default function GlobeComponent() {
     const fetchLocations = async () => {
       const data = await GetLocations();
       setLocations(data);
-      console.log(data);
     }
     fetchLocations()
 
