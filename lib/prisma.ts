@@ -1,6 +1,6 @@
 // Import PrismaClient class to interact with the database
 // import { PrismaClient } from "@/app/generated/prisma/client";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@/app/generated/prisma/client";
 // Create a type-safe global object to store PrismaClient
 // This helps prevent multiple instances during development (hot reload)
 const globalForPrisma = globalThis as unknown as {

@@ -1,5 +1,3 @@
-// components/auth/AuthenticationRequired.tsx (You could make this a separate file)
-
 import SignInButtons from "./SignInButtons";
 
 export default function SignInRequired() {
