@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Location, Trip } from "../generated/prisma/client";
 import Image from "next/image";
-import Button from "./ui/Button";
+import Button from "@/app/component/ui/Button";
 import { FaInfoCircle, FaMapMarkerAlt, FaRegCalendarAlt, FaClock } from "react-icons/fa";
 import Link from "next/link";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/app/component/ui/Tabs";
