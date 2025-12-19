@@ -1,0 +1,24 @@
+"use server";
+import { auth } from "@/auth";
+import { prisma } from "../prisma";
+
+export default async function GetLocations() {
+  const session = await auth();
+
+  //check if user is authenticated
+  if (!session || !session.user?.id) {
+    throw new Error("Not authenticated");
+  }
+
+  const locations = await prisma.location.findMany({
+    where: {
+      trip: {
+        userId: session.user.id,
+        endDate: {
+          lt: new Date(),
+        },
+      },
+    },
+  });
+  return locations;
+}
