@@ -8,7 +8,11 @@ import Link from "next/link";
 import TripDetailsClient from "@/app/component/TripDetailsClient";
 
 
-export default async function TripDetails({ params }: { params: { tripId: string } }) {
+export default async function TripDetails({ 
+    params 
+}: { 
+    params: Promise<{ tripId: string }> 
+}) {
     const session = await auth();
 
     if (!session) {
@@ -16,7 +20,8 @@ export default async function TripDetails({ params }: { params: { tripId: string
             <SignInRequired />
         )
     }
-    const { tripId } = params;
+    
+    const { tripId } = await params;
 
     const trip = await prisma.trip.findUnique({
         where: { id: tripId },
