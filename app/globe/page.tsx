@@ -1,9 +1,9 @@
 'use client';
-
+import GetLocations from '@/lib/actions/get-locations';
 import React, { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import Container from '../component/Container';
-import GetLocations from '@/lib/actions/get-locations';
+
 
 const Globe = dynamic(() => import('react-globe.gl'), { ssr: false });
 

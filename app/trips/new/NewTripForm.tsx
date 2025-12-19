@@ -1,10 +1,10 @@
 "use client";
-import Button from "@/app/component/ui/Button"
 import { AddTrip } from "@/lib/actions/add-trip"
 import { UploadButton } from "@/lib/uploadthing";
 import { useState } from "react";
 import Image from "next/image";
 import BackButton from "@/app/component/ui/BackButton";
+import Button from "@/app/component/ui/Button";
 
 export default function NewTripForm() {
     const [imageUrl, setImageUrl] = useState<string | null>(null);

@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { Location, Trip } from "../generated/prisma/client";
 import Image from "next/image";
-import Button from "@/app/component/ui/Button";
 import { FaInfoCircle, FaMapMarkerAlt, FaRegCalendarAlt, FaClock } from "react-icons/fa";
 import Link from "next/link";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/app/component/ui/Tabs";
@@ -11,6 +10,7 @@ import DeleteTrip from "@/lib/actions/delete-trip";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import SortableItinerary from "./ui/SortableItenerary";
+import Button from "./ui/Button";
 
 export type TripWithLocation = Trip & {
     locations: Location[];
