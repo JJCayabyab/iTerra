@@ -1,13 +1,13 @@
 # ✈️ Iterra
 
 A full-stack **Travel Planning & Itinerary Management System** built with:
-- **Next.js 14** – React Framework with App Router
-- **TypeScript** – Type-safe development
-- **PostgreSQL (Neon)** – Serverless database
-- **Uploadthing** – File uploads & media management
-- **Google Gemini AI** – AI-powered travel assistant
-- **Tailwind CSS** – Modern styling
-- **NextAuth.js** – Secure authentication
+- **Next.js** 
+- **TypeScript**
+- **PostgreSQL (Neon)** 
+- **Uploadthing** 
+- **Google Gemini AI** 
+- **Tailwind CSS** 
+- **NextAuth.js**
 
 ## 🚀 Features
 
