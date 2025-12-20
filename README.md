@@ -8,6 +8,7 @@ A full-stack **Travel Planning & Itinerary Management System** built with:
 - **Google Gemini AI** 
 - **Tailwind CSS** 
 - **NextAuth.js**
+- **Tailwind CSS**
 
 ## 🚀 Features
 
@@ -35,25 +36,7 @@ Fully optimized for desktop, tablet, and mobile devices.
 ### 🎯 Built for Travelers
 Designed to keep your adventures organized, stress-free, and memorable.
 
-## 🛠️ Tech Stack
-
-**Frontend:**
-- Next.js 14 (App Router)
-- TypeScript
-- Tailwind CSS
-- React Three Fiber (3D Globe)
-- Mapbox/Leaflet (2D Maps)
-
-**Backend:**
-- Next.js API Routes
-- PostgreSQL (Neon)
-- Prisma ORM
-- NextAuth.js
-
-**AI & Services:**
-- Google Gemini AI
-- Uploadthing
-- Vercel (Deployment)
+ Vercel (Deployment)
 
 ## 🌐 Live Demo
 [Visit Iterra](https://your-iterra-url.vercel.app)
