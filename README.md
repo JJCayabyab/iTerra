@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🌍 iTerra
+A full-stack Trip & Itinerary Planner designed to keep your adventures organized, visual, and stress-free.
 
-## Getting Started
+Next.js – React Framework (App Router)
 
-First, run the development server:
+TypeScript – Type-safe development
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Neon + PostgreSQL – Serverless Database
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Google Gemini AI – Smart AI Travel Chatbot
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+UploadThing – Seamless image & file uploads
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Tailwind CSS – Modern, responsive styling
 
-## Learn More
+🚀 Features
+📍 Trip & Itinerary Planning Create detailed trips, manage specific destinations, and customize your daily schedule with ease.
 
-To learn more about Next.js, take a look at the following resources:
+🤖 Gemini-Powered AI Chatbot Get personalized travel suggestions, route optimizations, and answers to your travel questions using integrated AI.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+📊 Dashboard Overview A centralized hub to track your total trips, upcoming adventures, ongoing journeys, and completed travels.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🗺️ 2D Map Visualization Interactive maps to help you visualize your route and understand the geography of your itinerary.
 
-## Deploy on Vercel
+🌎 3D Globe Experience An immersive, high-end 3D globe to explore your planned and visited locations in a cinematic way.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+🔐 Secure Authentication Quick and safe sign-in using Google or GitHub via secure auth providers.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🖼️ Media Management Upload and manage your travel photos and documents effortlessly via UploadThing.
+
+🌐 Live Demo
+Visit iTerra here
+
+🎥 Video Demo
+Watch the walkthrough here
