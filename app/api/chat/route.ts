@@ -5,7 +5,7 @@ export async function POST(req: Request) {
   try {
     const { prompt } = await req.json();
 
-    // Enhanced prompt with travel-only instructions
+    //  prompt with travel-only instructions
     const enhancedPrompt = `You are Iterra, a helpful travel assistant specialized in travel and tourism.
 
 IMPORTANT RULES:

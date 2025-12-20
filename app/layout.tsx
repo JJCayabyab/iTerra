@@ -43,7 +43,7 @@ export default async function RootLayout({
           }}
         />
 
-        <Navbar />
+        <Navbar session={session} />
         {children}
         <Footer/>
       </body>
