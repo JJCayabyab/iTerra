@@ -1,35 +1,73 @@
-🌍 iTerra
-A full-stack Trip & Itinerary Planner designed to keep your adventures organized, visual, and stress-free.
+# ✈️ Iterra
 
-Next.js – React Framework (App Router)
+A full-stack **Travel Planning & Itinerary Management System** built with:
+- **Next.js 14** – React Framework with App Router
+- **TypeScript** – Type-safe development
+- **PostgreSQL (Neon)** – Serverless database
+- **Uploadthing** – File uploads & media management
+- **Google Gemini AI** – AI-powered travel assistant
+- **Tailwind CSS** – Modern styling
+- **NextAuth.js** – Secure authentication
 
-TypeScript – Type-safe development
+## 🚀 Features
 
-Neon + PostgreSQL – Serverless Database
+### 🗺️ Trip & Itinerary Planning
+Create trips, manage destinations, and customize your itinerary with ease.
 
-Google Gemini AI – Smart AI Travel Chatbot
+### 📊 Dashboard Overview
+See total trips, upcoming adventures, ongoing trips, and completed journeys at a glance.
 
-UploadThing – Seamless image & file uploads
+### 🗾 2D Map Visualization
+View your itinerary on an interactive map to better understand your route.
 
-Tailwind CSS – Modern, responsive styling
+### 🌍 3D Globe Experience
+Explore visited and planned locations through an immersive 3D globe visualization.
 
-🚀 Features
-📍 Trip & Itinerary Planning Create detailed trips, manage specific destinations, and customize your daily schedule with ease.
+### 🤖 AI-Powered Chatbot
+Get instant travel recommendations and destination insights powered by Google Gemini AI.
 
-🤖 Gemini-Powered AI Chatbot Get personalized travel suggestions, route optimizations, and answers to your travel questions using integrated AI.
+### 🔐 Secure Authentication
+Quick and safe sign-in using Google or GitHub authentication via NextAuth.js.
 
-📊 Dashboard Overview A centralized hub to track your total trips, upcoming adventures, ongoing journeys, and completed travels.
+### 📱 Responsive Design
+Fully optimized for desktop, tablet, and mobile devices.
 
-🗺️ 2D Map Visualization Interactive maps to help you visualize your route and understand the geography of your itinerary.
+### 🎯 Built for Travelers
+Designed to keep your adventures organized, stress-free, and memorable.
 
-🌎 3D Globe Experience An immersive, high-end 3D globe to explore your planned and visited locations in a cinematic way.
+## 🛠️ Tech Stack
 
-🔐 Secure Authentication Quick and safe sign-in using Google or GitHub via secure auth providers.
+**Frontend:**
+- Next.js 14 (App Router)
+- TypeScript
+- Tailwind CSS
+- React Three Fiber (3D Globe)
+- Mapbox/Leaflet (2D Maps)
 
-🖼️ Media Management Upload and manage your travel photos and documents effortlessly via UploadThing.
+**Backend:**
+- Next.js API Routes
+- PostgreSQL (Neon)
+- Prisma ORM
+- NextAuth.js
 
-🌐 Live Demo
-Visit iTerra here
+**AI & Services:**
+- Google Gemini AI
+- Uploadthing
+- Vercel (Deployment)
 
-🎥 Video Demo
-Watch the walkthrough here
+## 🌐 Live Demo
+[Visit Iterra](https://your-iterra-url.vercel.app)
+
+## 🎥 Video Demo
+[Watch the demo here](https://i-terra-zeta.vercel.app/)
+
+## 📸 Screenshots
+
+### Dashboard
+![Dashboard](./screenshots/dashboard.png)
+
+### AI Chatbot
+![Chatbot](./screenshots/chatbot.png)
+
+### 3D Globe
+![Globe](./screenshots/globe.png)
