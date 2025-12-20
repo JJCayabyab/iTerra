@@ -1,8 +1,7 @@
 "use client";
 import { useState } from "react";
 import { MessageSquareText, X, Send, Bot } from 'lucide-react';
-import { Sen } from "next/font/google";
-
+import React from "react";
 export default function ChatBot() {
     const [isOpen, setIsOpen] = useState(false);
     const [input, setInput] = useState("");
@@ -43,7 +42,7 @@ export default function ChatBot() {
     // Format message content  of the bot's response
     const formatMessage = (content: string) => {
         const lines = content.split('\n');
-        const elements: JSX.Element[] = [];
+        const elements: React.ReactNode[] = [];
         let key = 0;
 
         for (let i = 0; i < lines.length; i++) {
