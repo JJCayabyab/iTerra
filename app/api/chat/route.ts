@@ -1,40 +1,44 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+// app/api/chat/route.ts
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
     const { prompt } = await req.json();
 
-    const apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${process.env.GOOGLE_GENERATIVE_AI_API_KEY}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              parts: [{ text: prompt }],
+            },
+          ],
+        }),
+      }
+    );
 
-    if (!apiKey || apiKey === "") {
-      console.error(
-        "❌ ERROR: API Key is missing! Check your .env.local file."
-      );
+    const data = await response.json();
+
+    if (!response.ok) {
       return NextResponse.json(
-        { error: "API Key not configured" },
-        { status: 500 }
+        { error: data.error?.message || "API request failed" },
+        { status: response.status }
       );
     }
 
-    const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({
-      model: "gemini-1.5-flash-8b", 
-    });
-
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const text = response.text();
+    const text =
+      data.candidates?.[0]?.content?.parts?.[0]?.text || "No response";
 
     return NextResponse.json({ text });
-  } catch (error: any) {
-
-    console.error("--- AI SERVER ERROR ---");
-    console.error(error);
-    console.error("-----------------------");
-
+  } catch (error) {
+    console.error("API Error:", error);
     return NextResponse.json(
-      { error: error.message || "Internal Server Error" },
+      { error: "Failed to process request" },
       { status: 500 }
     );
   }

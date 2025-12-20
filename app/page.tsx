@@ -11,6 +11,7 @@ import {
   PlaneTakeoff,
 } from "lucide-react";
 import SignInButtons from "./component/auth/SignInButtons";
+import ChatBot from "./component/ChatBot";
 
 function CollageImage({
   src,
@@ -46,7 +47,9 @@ function CollageImage({
 export default async function HomePage() {
   const session = await auth();
   return (
+
     <Container>
+
       {/* Hero Section */}
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-12 md:py-24">
         {/* Left Contents */}
@@ -139,6 +142,9 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/*ChatBot Section */}
+      <ChatBot />
 
       {/* Powered By Section */}
       <section>
