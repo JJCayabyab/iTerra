@@ -22,13 +22,18 @@ export default function GlobeComponent() {
 
   useEffect(() => {
     const fetchLocations = async () => {
-      const data = await GetLocations();
-      setLocations(data);
-    }
-    fetchLocations()
+      const result = await GetLocations();
 
+      if ('error' in result) {
+        console.error("Failed to fetch locations:", result.error);
+        return;
+      }
+
+      setLocations(result);
+    };
+
+    fetchLocations();
   }, []);
-
 
   useEffect(() => {
     const handleResize = () => {
