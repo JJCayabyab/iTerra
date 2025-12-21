@@ -52,7 +52,7 @@ export default function NewTripForm() {
     return (
         <>
             <form className="space-y-6" onSubmit={handleSubmit}>
-                <div>
+                <div >
                     <label className="block text-sm font-medium text-gray-700 mb-2">Trip Name</label>
                     <input
                         type="text"

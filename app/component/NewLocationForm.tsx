@@ -55,8 +55,8 @@ export default function NewLocationForm({ tripId }: { tripId: string }) {
 
     return (
         <>
-   
-            <form action={AddLocation} className="max-w-md mx-auto bg-white rounded-xl shadow-md border border-gray-100 p-6 space-y-6">
+
+            <form action={AddLocation} className="max-w-md mx-auto bg-white rounded-xl shadow-md border border-gray-100 p-6 space-y-6 mb-56">
                 <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
                     <span className="text-blue-500"></span> Add Destination
                 </h2>
