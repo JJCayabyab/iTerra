@@ -66,7 +66,7 @@ export default function GlobeComponent() {
             pointLabel="locationTitle"
             pointColor={() => '#ef4444'}
             pointAltitude={0.05}
-            pointRadius={0.2}
+            pointRadius={0.3}
             atmosphereColor="#7caeef"
             atmosphereAltitude={0.15}
           />

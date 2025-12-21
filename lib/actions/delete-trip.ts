@@ -9,7 +9,7 @@ export default async function DeleteTrip(tripId: string) {
 
   //check if user is authenticated
   if (!session || !session.user?.id) {
-    throw new Error("Not authenticated");
+    return { error: "You must be logged in to delete a trip." };
   }
 
   const trip = await prisma.trip.findUnique({

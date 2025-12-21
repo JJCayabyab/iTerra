@@ -7,9 +7,10 @@ export default async function GetLocations() {
 
   //check if user is authenticated
   if (!session || !session.user?.id) {
-    throw new Error("Not authenticated");
+    return { error: "Not authenticated" };
   }
 
+  //return locations for trips that have ended
   const locations = await prisma.location.findMany({
     where: {
       trip: {
