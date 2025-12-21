@@ -33,6 +33,9 @@ export default function Navbar({ session }: NavbarProps) {
                 <div className="hidden md:flex items-center space-x-4 font-medium">
                     {session?.user ? (
                         <>
+                            <Link href="/" className="text-black hover:text-blue-900">
+                                Home
+                            </Link>
                             <Link href="/trips" className="text-black hover:text-blue-900">
                                 Trips
                             </Link>
@@ -62,6 +65,13 @@ export default function Navbar({ session }: NavbarProps) {
                     <div className="flex flex-col space-y-4 px-6 py-4 font-medium">
                         {session?.user ? (
                             <>
+                                <Link
+                                    href="/"
+                                    className="text-black hover:text-blue-900 py-2"
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    Home
+                                </Link>
                                 <Link
                                     href="/trips"
                                     className="text-black hover:text-blue-900 py-2"
