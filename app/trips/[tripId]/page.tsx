@@ -35,7 +35,7 @@ export default async function TripDetails({
     if (!trip) {
         return (
             <>
-                <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
+                <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4 mb-30">
 
                     <img src="/images/trip-not-found.png" className="size-30" alt="Trip not found" />
                     <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-2">
