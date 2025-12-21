@@ -2,41 +2,47 @@
 
 import { auth } from "@/auth";
 import { prisma } from "../prisma";
-import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 export async function AddTrip(formData: FormData) {
   const session = await auth();
 
-  //check if user is authenticated
+  // 1. Return an object instead of throwing for authentication
   if (!session || !session.user?.id) {
-    throw new Error("Not authenticated");
+    return { error: "You must be logged in to create a trip." };
   }
-  
+
   const imageUrl = formData.get("imageUrl")?.toString();
   const startDateStr = formData.get("startDate")?.toString();
   const endDateStr = formData.get("endDate")?.toString();
   const title = formData.get("title")?.toString();
   const description = formData.get("description")?.toString();
 
-  //validate if all fields are filled
+  // 2. Return an object for validation errors
   if (!title || !description || !startDateStr || !endDateStr) {
-    throw new Error("Missing required fields");
+    return { error: "All fields are required." };
   }
 
-  const startDate = new Date(startDateStr!);
-  const endDate = new Date(endDateStr!);
+  try {
+    const startDate = new Date(startDateStr);
+    const endDate = new Date(endDateStr);
 
-  //create trip in database
-  await prisma.trip.create({
-    data: {
-      title,
-      description,
-      startDate,
-      endDate,
-      imageUrl,
-      userId: session.user?.id,
-    },
-  });
+    await prisma.trip.create({
+      data: {
+        title,
+        description,
+        startDate,
+        endDate,
+        imageUrl,
+        userId: session.user.id,
+      },
+    });
 
-  redirect("/trips");
+    revalidatePath("/trips");
+
+    return { success: true };
+  } catch (error) {
+    console.error("Database Error:", error);
+    return { error: "Something went wrong while saving the trip." };
+  }
 }

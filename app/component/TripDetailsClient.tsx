@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/app/component/ui/Tabs";
 import Map from "./ui/Map";
 import DeleteTrip from "@/lib/actions/delete-trip";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import SortableItinerary from "./ui/SortableItenerary";
 import Button from "./ui/Button";
@@ -44,7 +44,6 @@ export default function TripDetailsClient({ trip }: TripDetailsClientProps) {
             router.push("/trips");
         } catch (error) {
             console.error(error);
-
 
             toast.error("Failed to delete trip.", {
                 duration: 4000,
