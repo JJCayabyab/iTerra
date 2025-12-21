@@ -67,8 +67,8 @@ export default async function HomePage() {
 
             <BentoBox className="col-span-3 row-span-2">
               <Image
-                src="/images/hero-iterra.png"
-                alt="Route"
+                src="/images/japan.jpg"
+                alt="Japan"
                 fill
                 className="object-cover opacity-90"
               />
@@ -97,8 +97,8 @@ export default async function HomePage() {
 
             <BentoBox className="col-span-2 row-span-2">
               <Image
-                src="/images/japan.jpg"
-                alt="Japan"
+                src="/images/switzerland.jpg"
+                alt="Switzerland"
                 fill
                 className="object-cover"
               />
@@ -169,8 +169,8 @@ export default async function HomePage() {
       </section>
 
       {/* Call to Action */}
-      <section className="relative py-24 bg-cover bg-center bg-no-repeat rounded-3xl overflow-hidden" style={{ backgroundImage: "url('/images/hero-iterra.png')" }}>
-        <div className="absolute inset-0 bg-black/50"></div>
+      <section className="relative py-24 bg-cover bg-center bg-no-repeat rounded-3xl overflow-hidden" style={{ backgroundImage: "url('/images/CTA.png')" }}>
+        <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative z-10 max-w-4xl mx-auto text-center px-6">
           <h2 className="text-3xl md:text-4xl font-bold  mb-4 text-accent-light!">Your next adventure starts here</h2>
           <p className="mx-auto max-w-xl text-white/90 mb-8">Plan your trips, visualize your journey, and relive your adventures — all in one place with iTerra.</p>
