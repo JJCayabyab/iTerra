@@ -5,7 +5,7 @@ import Navbar from "./component/Navbar";
 import { auth } from "@/auth";
 import { Toaster } from "react-hot-toast";
 import Footer from "./component/Footer";
-
+import ChatBot from "./component/ChatBot";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -44,8 +44,10 @@ export default async function RootLayout({
         />
 
         <Navbar session={session} />
+
+        <ChatBot />
         {children}
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );

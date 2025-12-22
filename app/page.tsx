@@ -11,7 +11,6 @@ import {
   PlaneTakeoff,
 } from "lucide-react";
 import SignInButtons from "./component/auth/SignInButtons";
-import ChatBot from "./component/ChatBot";
 
 
 function BentoBox({ children, className }: { children: React.ReactNode; className?: string }) {
@@ -119,8 +118,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* ChatBot Section */}
-        <ChatBot />
+     
 
         {/* Powered By Section */}
         <section className="mt-12">
