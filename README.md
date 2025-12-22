@@ -12,28 +12,28 @@ A full-stack **Travel Planning & Itinerary Management System** built with:
 
 ## 🚀 Features
 
-### 🗺️ Trip & Itinerary Planning
+### Trip & Itinerary Planning
 Create trips, manage destinations, and customize your itinerary with ease.
 
-### 📊 Dashboard Overview
+### Dashboard Overview
 See total trips, upcoming adventures, ongoing trips, and completed journeys at a glance.
 
-### 🗾 2D Map Visualization
+### 2D Map Visualization
 View your itinerary on an interactive map to better understand your route.
 
-### 🌍 3D Globe Experience
+### 3D Globe Experience
 Explore visited and planned locations through an immersive 3D globe visualization.
 
 ### 🤖 AI-Powered Chatbot
 Get instant travel recommendations and destination insights powered by Google Gemini AI.
 
-### 🔐 Secure Authentication
+### Secure Authentication
 Quick and safe sign-in using Google or GitHub authentication via NextAuth.js.
 
-### 📱 Responsive Design
+### Responsive Design
 Fully optimized for desktop, tablet, and mobile devices.
 
-### 🎯 Built for Travelers
+### Built for Travelers
 Designed to keep your adventures organized, stress-free, and memorable.
 
  Vercel (Deployment)
