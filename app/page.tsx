@@ -26,7 +26,7 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen">
-      <Container>
+      <Container className="mt-[-35px]">
         {/* Hero Section */}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-12 md:py-24">
           {/* Left Contents */}
