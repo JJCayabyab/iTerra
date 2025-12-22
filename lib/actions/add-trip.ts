@@ -1,5 +1,5 @@
 "use server";
-
+import { rateLimit } from "@/app/redis";
 import { auth } from "@/auth";
 import { prisma } from "../prisma";
 import { revalidatePath } from "next/cache";
@@ -10,6 +10,15 @@ export async function AddTrip(formData: FormData) {
   // 1. Return an object instead of throwing for authentication
   if (!session || !session.user?.id) {
     return { error: "You must be logged in to create a trip." };
+  }
+
+  const { success } = await rateLimit.limit(`add-location:${session.user.id}`);
+
+  if (!success) {
+    return {
+      success: false,
+      error: "Too many requests. Please try again later.",
+    };
   }
 
   const imageUrl = formData.get("imageUrl")?.toString();
