@@ -7,7 +7,7 @@ export default async function GetLocations() {
 
   //check if user is authenticated
   if (!session || !session.user?.id) {
-    return { error: "Not authenticated" };
+    return { error: "You must be logged in to view your trips." };
   }
 
   //return locations for trips that have ended

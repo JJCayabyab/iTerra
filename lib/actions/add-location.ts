@@ -1,18 +1,24 @@
 "use server";
-
+import { rateLimit } from "@/app/redis";
 import { auth } from "@/auth";
 import { prisma } from "../prisma";
-import { redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
+
 export async function AddLocation(formData: FormData) {
   const session = await auth();
 
   // Check if user is authenticated
   if (!session || !session.user?.id) {
-    throw new Error("Not authenticated");
+    return{error:"You must be logged in to add a location."}
   }
 
-  //
+  const { success } = await rateLimit.limit(`add-location:${session.user.id}`);
+
+  if (!success) {
+    return {
+      success: false,
+      error: "Too many requests. Please try again later.",
+    };
+  }
   const locationTitle = formData.get("locationTitle")?.toString();
   const latStr = formData.get("lat")?.toString();
   const lngStr = formData.get("lng")?.toString();
@@ -20,32 +26,29 @@ export async function AddLocation(formData: FormData) {
 
   // Validate required fields
   if (!locationTitle || !latStr || !lngStr || !tripId) {
-    throw new Error("Missing required fields");
+    return { error: "Please fill in all required fields." };
   }
 
-  const lat = parseFloat(latStr);
-  const lng = parseFloat(lngStr);
+  try {
+    const lat = parseFloat(latStr);
+    const lng = parseFloat(lngStr);
 
-  // Get the current max order for this trip
-  const maxOrderLocation = await prisma.location.findFirst({
-    where: { tripId },
-    orderBy: { order: "desc" },
-    select: { order: true },
-  });
+    const maxOrderLocation = await prisma.location.findFirst({
+      where: { tripId },
+      orderBy: { order: "desc" },
+      select: { order: true },
+    });
 
-  const newOrder = (maxOrderLocation?.order ?? -1) + 1;
+    const newOrder = (maxOrderLocation?.order ?? -1) + 1;
 
-  // Create location in the database
-  await prisma.location.create({
-    data: {
-      locationTitle,
-      lat,
-      lng,
-      tripId,
-      order: newOrder,
-    },
-  });
-  
-  revalidatePath(`/trips/${tripId}`);
-  redirect(`/trips/${tripId}`);
+    await prisma.location.create({
+      data: { locationTitle, lat, lng, tripId, order: newOrder },
+    });
+
+    return { success: true };
+  } catch (error) {
+    return {
+      error: "An unexpected database error occurred.",
+    };
+  }
 }

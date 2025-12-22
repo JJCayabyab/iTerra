@@ -27,23 +27,24 @@ export default function NewTripForm() {
             const response = await AddTrip(formData);
 
             if (response?.error) {
-                throw new Error(response.error);
+                toast.error(response.error);
+            } else {
+                router.push("/trips");
+
+                toast.success("Trip created successfully!", {
+                    duration: 4000,
+                    position: "top-center",
+                }
+                );
             }
-            //show success toast
-            toast.success("Trip created successfully!", {
-                duration: 4000,
-                position: "top-center",
-            });
-
-            router.push("/trips");
-
         } catch (error) {
             console.error(error);
-            //show error toast
+            router.push("/trips");
             toast.error("Failed to create trip. Please try again.", {
                 duration: 4000,
                 position: "top-center",
             });
+
         } finally {
             setPending(false);
         }

@@ -4,15 +4,15 @@ import { useState, useEffect } from "react";
 import { CiSearch } from "react-icons/ci";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { AddLocation } from "@/lib/actions/add-location";
-
-
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 export default function NewLocationForm({ tripId }: { tripId: string }) {
     const [query, setQuery] = useState<string>("");
     const [suggestions, setSuggestions] = useState<any[]>([]);
     const [selectedLocation, setSelectedLocation] = useState<any>(null);
-
+    const [pending, setPending] = useState(false);
     const GEOAPIFY_API_KEY = process.env.NEXT_PUBLIC_GEO_API_KEY;
-
+    const router = useRouter()
     // Fetch suggestions when query changes
     useEffect(() => {
         if (!query || query.length < 3) {
@@ -53,10 +53,39 @@ export default function NewLocationForm({ tripId }: { tripId: string }) {
         console.log(item.properties);
     };
 
+    //handle submit
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        setPending(true);
+
+        const formData = new FormData(event.currentTarget);
+        try {
+            const response = await AddLocation(formData);
+
+            if (response?.error) {
+                toast.error(response.error);
+            } else {
+
+                toast.success("Location added successfully!", {
+                    duration: 4000,
+                    position: "top-center",
+                });
+            }
+            router.push(`/trips/${tripId}`);
+        } catch (error) {
+            toast.error("Failed to create trip. Please try again.", {
+                duration: 4000,
+                position: "top-center",
+            });
+            router.push(`/trips/${tripId}`);
+        } finally {
+            setPending(false);
+        }
+    }
     return (
         <>
 
-            <form action={AddLocation} className="max-w-md mx-auto bg-white rounded-xl shadow-md border border-gray-100 p-6 space-y-6 mb-56">
+            <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white rounded-xl shadow-md border border-gray-100 p-6 space-y-6 mb-56">
                 <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
                     <span className="text-blue-500"></span> Add Destination
                 </h2>
