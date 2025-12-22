@@ -8,24 +8,27 @@ import Link from "next/link";
 import TripDetailsClient from "@/app/component/TripDetailsClient";
 
 
-export default async function TripDetails({ 
-    params 
-}: { 
-    params: Promise<{ tripId: string }> 
+export default async function TripDetails({
+    params
+}: {
+    params: Promise<{ tripId: string }>
 }) {
     const session = await auth();
 
-    if (!session) {
+    if (!session?.user?.id) {
         return (
             <SignInRequired />
         )
     }
-    
+
     const { tripId } = await params;
 
-    const trip = await prisma.trip.findUnique({
-        where: { id: tripId },
-        include:{
+    const trip = await prisma.trip.findFirst({
+        where: {
+            id: tripId,
+            userId: session.user.id 
+        },
+        include: {
             locations: true
         }
     });
@@ -43,7 +46,7 @@ export default async function TripDetails({
                     </h2>
                     <p className="text-slate-500 max-w-md mb-8">
                         We couldn't locate the trip details you requested. It may have been deleted or the link is incorrect.
-                    </p> 
+                    </p>
 
 
                     <Link
