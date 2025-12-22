@@ -31,9 +31,10 @@ export default async function HomePage() {
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-12 md:py-24">
           {/* Left Contents */}
           <div className="space-y-6 text-center lg:text-left order-1 lg:order-1">
-            <span className="inline-block rounded-full bg-primary/10 px-4 py-1 text-sm font-medium text-primary">
+            <span className="inline-block rounded-full bg-primary/10 px-4  py-1 text-sm font-medium text-primary">
               Travel smarter with iTerra
             </span>
+
 
             <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
               Plan, track, and visualize your trips with{" "}
@@ -46,18 +47,31 @@ export default async function HomePage() {
               2D maps and a 3D globe.
             </p>
 
-            <div className="flex flex-wrap justify-center lg:justify-start gap-4">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center lg:justify-start gap-4 w-full">
+              <Link
+                href="https://www.youtube.com/watch?v=pvqKvXC9Be8"
+                target="_blank"
+                className=" w-40 sm:w-auto text-center rounded-lg bg-primary text-white  px-5 py-2 font-bold hover:shadow-lg transition-all active:scale-95  "
+              >
+                Watch Demo
+              </Link>
               {session === null ? (
-                <SignInButtons />
+                <Link
+                  href="/trips"
+                  className="w-40 sm:w-auto text-center rounded-lg bg-accent/90 px-5 py-2 font-bold text-white shadow-md border-none hover:shadow-lg  transition-all active:scale-95"
+                >
+                  Start Planning
+                </Link>
               ) : (
                 <Link
                   href="/trips"
-                  className="rounded-xl bg-white px-8 py-4 font-bold text-primary shadow-md hover:shadow-lg border border-gray-100 transition-all active:scale-95"
+                  className="w-40 sm:w-auto text-center rounded-lg bg-white px-5 py-2 font-bold text-primary shadow-md border-none hover:shadow-lg  transition-all active:scale-95"
                 >
                   View Trips
                 </Link>
               )}
             </div>
+
           </div>
 
           {/* Right Contents  */}
@@ -118,7 +132,6 @@ export default async function HomePage() {
           </div>
         </section>
 
-     
 
         {/* Powered By Section */}
         <section className="mt-12">
