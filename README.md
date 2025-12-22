@@ -12,7 +12,7 @@ A full-stack **Travel Planning & Itinerary Management System** built with:
 
 ## 🚀 Features
 
-- Trip & Itinerary Planning
+- **Trip & Itinerary Planning**
 Create trips, manage destinations, and customize your itinerary with ease.
 
 ### Dashboard Overview
