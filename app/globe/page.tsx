@@ -52,31 +52,34 @@ export default function GlobeComponent() {
   }, []);
 
   return (
-    <Container>
-      <div className="flex flex-col gap-8" ref={containerRef}>
-        <div className="bg-white shadow-md p-5 rounded-lg z-10 relative">
-          <h1 className=" text-2xl lg:text-4xl font-semibold text-center text-gray-800">
-            Visualize All Your Completed Adventures
-          </h1>
-        </div>
+    <div className='min-h-screen'>
+      <Container>
+        <div className="flex flex-col gap-8" ref={containerRef}>
+          <div className="bg-white shadow-md p-5 rounded-lg z-10 relative">
+            <h1 className=" text-2xl lg:text-4xl font-semibold text-center text-gray-800">
+              Visualize All Your Completed Adventures
+            </h1>
+          </div>
 
-        <div className="mb-15 rounded-xl overflow-hidden shadow-2xl bg-black border border-gray-800 cursor-move">
-          <Globe
-            width={dimensions.width}
-            height={dimensions.height}
-            globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
-            pointsData={locations}
-            pointLat="lat"
-            pointLng="lng"
-            pointLabel="locationTitle"
-            pointColor={() => '#ef4444'}
-            pointAltitude={0.05}
-            pointRadius={0.3}
-            atmosphereColor="#7caeef"
-            atmosphereAltitude={0.15}
-          />
+          <div className="mb-15 rounded-xl overflow-hidden shadow-2xl bg-black border border-gray-800 cursor-move">
+            <Globe
+              width={dimensions.width}
+              height={dimensions.height}
+              globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+              pointsData={locations}
+              pointLat="lat"
+              pointLng="lng"
+              pointLabel="locationTitle"
+              pointColor={() => '#ef4444'}
+              pointAltitude={0.05}
+              pointRadius={0.3}
+              atmosphereColor="#7caeef"
+              atmosphereAltitude={0.15}
+            />
+          </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </div>
+
   );
 }
