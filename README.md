@@ -33,6 +33,9 @@ Quick and safe sign-in using Google or GitHub authentication via NextAuth.js.
 - **Responsive Design**:
 Fully optimized for desktop, tablet, and mobile devices.
 
+- **Rate Limiter**:
+Added rate limiter to prevent API abuse
+
 ## 🌐 Live Demo
 [Visit Iterra](https://i-terra-zeta.vercel.app/)
 
