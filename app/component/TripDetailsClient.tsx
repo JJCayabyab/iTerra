@@ -130,6 +130,7 @@ export default function TripDetailsClient({ trip }: TripDetailsClientProps) {
                             <h3 className="text-lg font-semibold text-slate-800 mb-3 flex items-center gap-2">
                                 <FaInfoCircle className="text-slate-400" /> About this Trip
                             </h3>
+                            <p className="text-slate-600">{trip?.description}</p>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center gap-4">

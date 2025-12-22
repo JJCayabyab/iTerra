@@ -62,6 +62,7 @@ export default function NewTripForm() {
                         placeholder="(e.g., Brazil Trip, Hawaiian Vacation, Tokyo Trip)"
                         required
                         disabled={pending}
+                        maxLength={50}
                     />
                 </div>
                 <div>
@@ -72,6 +73,7 @@ export default function NewTripForm() {
                         placeholder="Trip description"
                         required
                         disabled={pending}
+                        maxLength={300}
                     />
                 </div>
                 <div className="space-y-4 gap-4 md:flex">
