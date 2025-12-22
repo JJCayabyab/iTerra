@@ -50,10 +50,10 @@ export default async function TripDetails({
 
 
                     <Link
-                        href="/dashboard"
+                        href="/trips"
                         className="bg-primary text-white text-sm font-medium py-3 px-6 rounded-lg transition-colors duration-200 shadow-sm"
                     >
-                        Return to Dashboard
+                        Return to Trips Page
                     </Link>
                 </div >
             </>
