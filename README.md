@@ -34,7 +34,7 @@ Quick and safe sign-in using Google or GitHub authentication via NextAuth.js.
 Fully optimized for desktop, tablet, and mobile devices.
 
 ## 🌐 Live Demo
-[Visit Iterra](https://your-iterra-url.vercel.app)
+[Visit Iterra](https://i-terra-zeta.vercel.app/)
 
 ## 🎥 Video Demo
 [Watch the demo here](https://i-terra-zeta.vercel.app/)
