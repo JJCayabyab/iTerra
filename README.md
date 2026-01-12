@@ -40,15 +40,6 @@ Added rate limiter to prevent API abuse
 [Visit Iterra](https://i-terra-zeta.vercel.app/)
 
 ## 🎥 Video Demo
-[Watch the demo here](https://i-terra-zeta.vercel.app/)
+[Watch the demo here](https://www.youtube.com/watch?v=pvqKvXC9Be8)
 
-## 📸 Screenshots
 
-### Dashboard
-![Dashboard](./screenshots/dashboard.png)
-
-### AI Chatbot
-![Chatbot](./screenshots/chatbot.png)
-
-### 3D Globe
-![Globe](./screenshots/globe.png)
